@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediBuddy | Neighborhood Pharmacy Stock & Generic Finder</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="image.png">
+  
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <div class="logo">
+        <span class="logo-icon">✚</span>
+        <div>
+          <h1>MediBuddy</h1>
+          <p>Local Pharmacy Stock & Generic Substitute Finder</p>
+        </div>
+      </div>
+      <div class="quick-stats">
+        <span class="badge-pill">📍 Local Area Directory</span>
+        <span class="badge-pill">💊 100% Salt-Matched Generics</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Search & Filter Section -->
+    <section class="search-section">
+      <div class="search-box-wrapper">
+        <div class="search-input-group">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Search by Brand Name (e.g., Augmentin), Salt (e.g., Paracetamol), or Category..." 
+            autocomplete="off"
+          >
+          <button id="clearSearchBtn" class="clear-btn hidden" title="Clear search">✕</button>
+        </div>
+        <!-- Live Autocomplete Dropdown -->
+        <ul id="autocompleteList" class="autocomplete-dropdown hidden"></ul>
+      </div>
+
+      <!-- Health Category Filter Pills -->
+      <div class="category-filters" id="categoryFilters">
+        <button class="cat-btn active" data-category="All">All Medicines</button>
+        <button class="cat-btn" data-category="Fever & Pain">Fever & Pain</button>
+        <button class="cat-btn" data-category="Antibiotics">Antibiotics</button>
+        <button class="cat-btn" data-category="Gastric Care">Gastric Care</button>
+        <button class="cat-btn" data-category="Cardiac & BP">Cardiac & BP</button>
+        <button class="cat-btn" data-category="Diabetes">Diabetes</button>
+        <button class="cat-btn" data-category="Allergy & Cold">Allergy & Cold</button>
+      </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <div class="app-grid">
+      <!-- Left Column: Selected Medicine Details & Generic Suggester -->
+      <div class="details-column">
+        
+        <!-- Primary Medicine Detail Card -->
+        <div class="card medicine-detail-card" id="medicineDetailCard">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Affordable Generic Alternative Suggester -->
+        <div class="card generic-card" id="genericSuggesterCard">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+      </div>
+
+      <!-- Right Column: Local Pharmacy Availability Directory -->
+      <div class="pharmacy-column">
+        <div class="card pharmacy-directory-card">
+          <div class="card-header-flex">
+            <div>
+              <h2>🏥 Local Pharmacy Availability</h2>
+              <p class="subtitle" id="pharmacySubtitle">Showing stock status for selected medicine nearby</p>
+            </div>
+            <div class="stock-filter">
+              <label class="checkbox-label">
+                <input type="checkbox" id="inStockOnlyToggle">
+                <span>In-Stock Only</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pharmacy-list" id="pharmacyList">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Reservation / Stock Hold Modal -->
+  <div id="reserveModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Reserve Medicine Pickup</h3>
+        <button id="closeModalBtn" class="close-modal">✕</button>
+      </div>
+      <div class="modal-body" id="modalBodyContent">
+        <!-- Dynamic reservation summary -->
+      </div>
+      <form id="reserveForm" class="reserve-form">
+        <div class="form-group">
+          <label for="patientName">Patient / Buyer Name</label>
+          <input type="text" id="patientName" required placeholder="Enter full name">
+        </div>
+        <div class="form-group">
+          <label for="patientPhone">Mobile Number (for SMS Token)</label>
+          <input type="tel" id="patientPhone" required placeholder="e.g., 9876543210">
+        </div>
+        <div class="form-group">
+          <label for="packQty">Quantity (Strips/Packs)</label>
+          <input type="number" id="packQty" value="1" min="1" max="10" required>
+        </div>
+        <button type="submit" class="btn-primary full-width">Confirm 2-Hour Free Stock Hold</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
